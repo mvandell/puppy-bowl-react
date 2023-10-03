@@ -4,19 +4,19 @@ const cohortName = "2306-GHP-ET-WEB-PT-SF";
 const API_URL = `https://fsa-puppy-bowl.herokuapp.com/api/${cohortName}`;
 
 export default function AllPlayers() {
-    const [puppies, setPuppies] = useState(null);
+    const [puppies, setPuppies] = useState([]);
 
     useEffect(() => {
-        const getData = async() => {
-        try {
-            const response = await fetch(API_URL + '/players');
-            const result = await response.json();
-            console.log(result.data.players);
-            setPuppies(result.data.players);
-        
-        } catch (error) {
-            console.error("Uh oh, trouble fetching players!", error)
-        }}
+        async function getData() {
+            try {
+                const response = await fetch(`${API_URL}/players`);
+                const result = await response.json();
+                console.log(result.data.players);
+                setPuppies(result.data.players);
+            
+            } catch (error) {
+                console.error("Uh oh, trouble fetching players!", error)
+            }}
         getData();
     },[])
     return (
@@ -32,7 +32,7 @@ export default function AllPlayers() {
                     puppies.map((player)=>{
                         return (
                             <div key={player.name}>
-                                <h3>{player.name}</h3>
+                                <p>{player.name}</p>
                             </div>
                         )
                     })
