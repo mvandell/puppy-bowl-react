@@ -45,7 +45,7 @@ export default function AllPlayers() {
                     !searchInput && puppies.map((player)=>{
                         return (
                             <div key={player.id}>
-                                <p>{player.name}</p>
+                                <Link to={`/${player.id}`}>{player.name}</Link>
                             </div>
                         )
                     })

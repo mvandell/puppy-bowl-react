@@ -7,12 +7,12 @@ const API_URL = `https://fsa-puppy-bowl.herokuapp.com/api/${cohortName}`;
 export default function SinglePlayer() {
     const params = useParams();
     const [puppy, setPuppy] = useState(null);
-    const id = params.id;
+    const puppyId = params.id;
 
     useEffect(() => {
         async function getSinglePlayer() {
             try {
-                const response = await fetch(`${API_URL}/players/${id}`);
+                const response = await fetch(`${API_URL}/players/${puppyId}`);
                 const result = await response.json();
                 console.log(result.data.player);
                 setPuppy(result.data.player);
