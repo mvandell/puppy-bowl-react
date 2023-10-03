@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom";
 
 const cohortName = "2306-GHP-ET-WEB-PT-SF";
 const API_URL = `https://fsa-puppy-bowl.herokuapp.com/api/${cohortName}`;
@@ -8,7 +9,7 @@ export default function AllPlayers() {
     const [searchInput, setSearchInput] = useState("");
 
     useEffect(() => {
-        async function getData() {
+        async function getPlayerList() {
             try {
                 const response = await fetch(`${API_URL}/players`);
                 const result = await response.json();
@@ -18,7 +19,7 @@ export default function AllPlayers() {
             } catch (error) {
                 console.error("Uh oh, trouble fetching players!", error)
             }}
-        getData();
+        getPlayerList();
     },[])
 
     function handleSearch(event) {
@@ -43,7 +44,7 @@ export default function AllPlayers() {
                 {
                     !searchInput && puppies.map((player)=>{
                         return (
-                            <div key={player.name}>
+                            <div key={player.id}>
                                 <p>{player.name}</p>
                             </div>
                         )
