@@ -5,6 +5,7 @@ const API_URL = `https://fsa-puppy-bowl.herokuapp.com/api/${cohortName}`;
 
 export default function AllPlayers() {
     const [puppies, setPuppies] = useState([]);
+    const [searchInput, setSearchInput] = useState("");
 
     useEffect(() => {
         async function getData() {
@@ -19,17 +20,28 @@ export default function AllPlayers() {
             }}
         getData();
     },[])
+
+    function handleSearch(event) {
+        event.preventDefault();
+        setSearchInput(event.target.value);
+        if (searchInput.length > 0) {
+            puppies.filter((puppy) => {
+                return <p>{puppy.name.match(searchInput)}</p>;
+            })
+        }
+    }
+
     return (
         <>
             {/* Search Bar */}
             <form>
                 <label>Search:
-                    <input type="text" onChange={(event) => puppies.filter((puppyName) => puppyName.contains(event.target.value))} />
+                    <input type="text" onChange={handleSearch} value={searchInput}/>
                 </label>
             </form>
-            <div  >
+            <div>
                 {
-                    puppies.map((player)=>{
+                    !searchInput && puppies.map((player)=>{
                         return (
                             <div key={player.name}>
                                 <p>{player.name}</p>
