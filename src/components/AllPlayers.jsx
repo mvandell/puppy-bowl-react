@@ -7,24 +7,32 @@ export default function AllPlayers() {
     const [puppies, setPuppies] = useState(null);
 
     useEffect(() => {
+        const getData = async() => {
         try {
-            const getData = async() => {
             const response = await fetch(API_URL + '/players');
             const result = await response.json();
-            setPuppies(result.data.players)
-        }
+            console.log(result.data.players);
+            setPuppies(result.data.players);
+        
         } catch (error) {
             console.error("Uh oh, trouble fetching players!", error)
-        }
+        }}
+        getData();
     },[])
     return (
         <>
-            <div>
+            {/* Search Bar */}
+            <form>
+                <label>Search:
+                    <input type="text" onChange={(event) => puppies.filter((puppyName) => puppyName.contains(event.target.value))} />
+                </label>
+            </form>
+            <div  >
                 {
-                    puppies.map((puppy)=>{
+                    puppies.map((player)=>{
                         return (
-                            <div>
-                                <h3>{puppy.name}</h3>
+                            <div key={player.name}>
+                                <h3>{player.name}</h3>
                             </div>
                         )
                     })

@@ -15,9 +15,9 @@ function App() {
         <Link to='/NewPlayerForm' >New Player</Link>
       </nav>
       <Routes>
-        <Route path='/' element={AllPlayers} />{/*Homepage */}
-        <Route path='/NewPlayerForm' element={NewPlayerForm} />{/*Form for new players */}
-        <Route path='/SinglePlayer/:name' element={SinglePlayer} />{/*Parameterized route for individual players */}
+        <Route path='/' element={<AllPlayers/>} />{/*Homepage */}
+        <Route path='/NewPlayerForm' element={<NewPlayerForm/>} />{/*Form for new players */}
+        <Route path='/SinglePlayer/:name' element={<SinglePlayer/>} />{/*Parameterized route for individual players */}
       </Routes>
     </>
   )
