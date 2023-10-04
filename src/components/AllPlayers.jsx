@@ -32,17 +32,7 @@ export default function AllPlayers() {
         }
     }
 
-    useEffect(() => {
-        async function removePlayer(playerId) {
-            try {
-                const response = await fetch(API_URL, {method: 'DELETE',});
-                const result = await response.json();
-                console.log(result);
-            } catch (err) {
-                console.error(err);
-            }
-        }
-    })
+    
 
     return (
         <>
@@ -58,7 +48,6 @@ export default function AllPlayers() {
                         return (
                             <div key={player.id}>
                                 <Link to={`/${player.id}`}>{player.name}</Link>
-                                <button onClick={removePlayer(player.id)} >Delete Player</button>
                             </div>
                         )
                     })
