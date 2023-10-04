@@ -5,9 +5,8 @@ const cohortName = "2306-GHP-ET-WEB-PT-SF";
 const API_URL = `https://fsa-puppy-bowl.herokuapp.com/api/${cohortName}`;
 
 export default function SinglePlayer() {
-    const params = useParams();
+    const {puppyId} = useParams();
     const [puppy, setPuppy] = useState(null);
-    const puppyId = params.id;
 
     useEffect(() => {
         async function getSinglePlayer() {
@@ -21,7 +20,7 @@ export default function SinglePlayer() {
                 console.error("Uh oh, trouble fetching player!", error)
             }}
         getSinglePlayer();
-    },[])
+    },[puppyId])
     console.log(puppy);
     return (
         <>
