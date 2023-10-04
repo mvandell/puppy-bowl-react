@@ -9,7 +9,7 @@ export default function NewPlayerForm() {
         fetch(API_URL, {method: form.method, body: formData});
         const formObj = Object.fromEntries(formData.entries());
         console.log(formObj);
-
+};
     return (
             <form method="post" onSubmit={handleSubmit}>
                 <h2>Add a New Player</h2>
@@ -46,4 +46,4 @@ export default function NewPlayerForm() {
                 <button type="submit">Submit</button>
             </form>
     )
-};};
+};
