@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const cohortName = "2306-GHP-ET-WEB-PT-SF";
 const API_URL = `https://fsa-puppy-bowl.herokuapp.com/api/${cohortName}`;
@@ -22,13 +22,14 @@ export default function SinglePlayer() {
             }}
         getSinglePlayer();
     },[])
-
+    console.log(puppy);
     return (
         <>
+            <Link to="/">Back</Link>
            <h1>{puppy.name}</h1> 
            <h2>{puppy.breed}</h2>
-           <p>{`${puppy.name} is on the ${puppy.status}`}</p>
+           <h3>{`${puppy.name} is on the ${puppy.status}`}</h3>
            <img src={puppy.imageUrl} alt={`${puppy.name}'s picture`} />
         </>
-    )
-}
+    );
+};
